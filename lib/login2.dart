@@ -65,6 +65,7 @@ class _Login2ScreenState extends State<Login2Screen> {
         onUpdateVisitedHistory: (controller, url, androidIsReload) async{
           print(url);
           print(androidIsReload);
+          print(webViewController);
           await _checkUrl(url);
         }
       ),
