@@ -52,7 +52,7 @@ class _Login2ScreenState extends State<Login2Screen> {
     return Scaffold(
       appBar: AppBar(),
       body: InAppWebView(
-        initialUrlRequest: URLRequest(url: Uri.parse("https://192.168.15.8:5001")), // https://192.168.15.13:5001 https://inappwebview.dev/")),
+        initialUrlRequest: URLRequest(url: Uri.parse("https://192.168.15.8:5001/auth/login")), // https://192.168.15.13:5001 https://inappwebview.dev/")),
         initialOptions: options,
         pullToRefreshController: pullToRefreshController,
         onReceivedServerTrustAuthRequest: (controller, challenge) async {
@@ -80,6 +80,7 @@ class _Login2ScreenState extends State<Login2Screen> {
       var s = Store();
       s.cookies = cookies;
       print(cookies);
+      webViewController.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://192.168.15.8:5001/auth/signoutlocal")));
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeView())
