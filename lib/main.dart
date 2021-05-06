@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_view/login.dart';
+import 'package:web_view/login2.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -62,6 +64,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginView())
+                );
+              },
+            ),
+            ElevatedButton(
+              child: Text('Login2'),
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login2Screen())
                 );
               },
             )
