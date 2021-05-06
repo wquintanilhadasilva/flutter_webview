@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:web_view/home.dart';
+import 'package:web_view/store.dart';
 
 class Login2Screen extends StatefulWidget {
   @override
@@ -60,7 +62,27 @@ class _Login2ScreenState extends State<Login2Screen> {
         onWebViewCreated: (controller) {
           webViewController = controller;
         },
+        onUpdateVisitedHistory: (controller, url, androidIsReload) async{
+          print(url);
+          print(androidIsReload);
+          await _checkUrl(url);
+        }
       ),
     );
+  }
+
+  void _checkUrl(Uri url) async {
+    if(url.toString() == "https://192.168.15.8:5001/login-success"){
+
+      CookieManager cookieManager = CookieManager.instance();
+      List<Cookie> cookies = await cookieManager.getCookies(url: url);
+      var s = Store();
+      s.cookies = cookies;
+      print(cookies);
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeView())
+      );
+    }
   }
 }
