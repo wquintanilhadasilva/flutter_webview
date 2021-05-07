@@ -49,26 +49,31 @@ class _Login2ScreenState extends State<Login2Screen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: InAppWebView(
-        initialUrlRequest: URLRequest(url: Uri.parse("https://192.168.15.8:5001/auth/login")), // https://192.168.15.13:5001 https://inappwebview.dev/")),
-        initialOptions: options,
-        pullToRefreshController: pullToRefreshController,
-        onReceivedServerTrustAuthRequest: (controller, challenge) async {
-          print(challenge);
-          return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
-        },
-        onWebViewCreated: (controller) {
-          webViewController = controller;
-        },
-        onUpdateVisitedHistory: (controller, url, androidIsReload) async{
-          print(url);
-          print(androidIsReload);
-          print(webViewController);
-          await _checkUrl(url);
-        }
-      ),
+    return WillPopScope(
+      // onWillPop: () => Future.value(false), // tira o gesto de voltar no dispositivo
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false, // tira o botão voltar
+          ),
+          body: InAppWebView(
+            initialUrlRequest: URLRequest(url: Uri.parse("https://192.168.15.8:5001/auth/login")), // https://192.168.15.13:5001 https://inappwebview.dev/")),
+            initialOptions: options,
+            pullToRefreshController: pullToRefreshController,
+            onReceivedServerTrustAuthRequest: (controller, challenge) async {
+              print(challenge);
+              return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
+            },
+            onWebViewCreated: (controller) {
+              webViewController = controller;
+            },
+            onUpdateVisitedHistory: (controller, url, androidIsReload) async{
+              print(url);
+              print(androidIsReload);
+              print(webViewController);
+              await _checkUrl(url);
+            }
+          ),
+        )
     );
   }
 

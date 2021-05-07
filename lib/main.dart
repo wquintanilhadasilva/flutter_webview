@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             ElevatedButton(
-              child: Text('Login'),
+              child: Text('WebView'),
               onPressed: (){
                 Navigator.push(
                     context,
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ElevatedButton(
-              child: Text('Login2'),
+              child: Text('Login SSO'),
               onPressed: (){
                 Navigator.push(
                     context,
