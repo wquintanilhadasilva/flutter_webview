@@ -1,4 +1,4 @@
-# POC RBSO
+# POC
 
 POC para aplicativo em Flutter, autenticando com redes sociais e um provedor OpenID, exibindo a tela de login em webview e após autenticação, sair do webview para as views nativas em flutter.
 
