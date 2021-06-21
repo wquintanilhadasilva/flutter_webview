@@ -1,16 +1,18 @@
-# web_view
+# POC RBSO
 
-A new Flutter application.
+POC para aplicativo em Flutter, autenticando com redes sociais e um provedor OpenID, exibindo a tela de login em webview e após autenticação, sair do webview para as views nativas em flutter.
 
-## Getting Started
+A aplicação flutter, após receber o login com sucesso (escutando evento de transição de página na webview), recupera os cookies visto que o jwt-token vem num cookie e o armazena para ser utilizado nas requisições aos microsserviços.
 
-This project is a starting point for a Flutter application.
+O plugin utilizado para isso foi o flutter_inappwebview.
 
-A few resources to get you started if this is your first Flutter project:
+Todo o processo de autenticação é realizado no backend que é desenvolvido em .net5.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Back-end
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Dois projetos no backend:
+
+* Projeto SSO: Responsável por realizar a autenticação no Facebook, no Google, no Twitter e no OpenID (usei o keyckloak mas o foco é o acesso.gov (precisa cadastrar a aplicação lá no ministério da economia))
+* Projeto WebApi: Microsserviços que serão chamados após autenticação.
+
+O backend, após receber a confirmação da autenticação no provedor externo, gera um token chamado jwt-token e o devolve como um cookie para o client usar para chamar os microsserviços

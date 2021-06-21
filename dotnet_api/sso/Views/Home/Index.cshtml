@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container body-content text-center">
+    <h1 class="display-4">Bem vindo!</h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1>Bem vindo @User.Identity.Name</h1>
+
+        @*<p>
+            <a class="btn btn-primary login-button" asp-action="WhoIam" asp-route-provider="@User">WhoIam</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" asp-action="Anonymous" asp-route-provider="@User">Anonymous</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" asp-action="Authenticated" asp-route-provider="@User">Authenticated</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" asp-action="Employee" asp-route-provider="@User">Employee</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" asp-action="Manager" asp-route-provider="@User">Manager</a>
+        </p>*@
+        <p>
+            <a class="btn btn-primary login-button" href="https://dev.lab.me:5002/anonymous">Anônimo</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" href="https://dev.lab.me:5002/whoiam">WhoIam</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" href="https://dev.lab.me:5002/authenticated">Authenticated</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" href="https://dev.lab.me:5002/employee">Employee</a>
+        </p>
+        <p>
+            <a class="btn btn-primary login-button" href="https://dev.lab.me:5002/manager">Manager</a>
+        </p>
+    }
+    else
+    {
+        <h1>Você não está logado</h1>
+    }
+</div>
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+    </p>
+</div>*@
